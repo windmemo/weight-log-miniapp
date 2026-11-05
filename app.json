@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/today/today",
+    "pages/trend/trend",
+    "pages/profile/profile",
+    "pages/record/record"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#f4f5f2",
+    "navigationBarTitleText": "体重记录",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f4f5f2"
+  },
+  "tabBar": {
+    "color": "#8a9089",
+    "selectedColor": "#2f6b4f",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/today/today",
+        "text": "今天"
+      },
+      {
+        "pagePath": "pages/trend/trend",
+        "text": "变化"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {}
+}

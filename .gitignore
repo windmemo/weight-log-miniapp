@@ -1,0 +1,20 @@
+# 个人健康数据，绝不提交
+导入-*.json
+
+# 本地设计稿 / 头像等素材
+design/
+
+# 开发者工具本机私有配置
+project.private.config.json
+
+# 截图目录
+.screenshots/
+
+# 临时脚本
+_*.ps1
+_*.py
+
+# 其他临时文件
+*.tmp
+Thumbs.db
+.DS_Store

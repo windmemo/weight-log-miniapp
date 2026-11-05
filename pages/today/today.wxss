@@ -1,0 +1,109 @@
+.hero {
+  padding: 40rpx 28rpx 32rpx;
+}
+
+.hero-label {
+  font-size: 24rpx;
+  color: #8a9089;
+  letter-spacing: 2rpx;
+}
+
+.hero-row {
+  display: flex;
+  align-items: baseline;
+  margin-top: 6rpx;
+}
+
+.hero-num {
+  font-size: 96rpx;
+  font-weight: 600;
+  letter-spacing: -2rpx;
+  line-height: 1.1;
+}
+
+.hero-unit {
+  font-size: 30rpx;
+  color: #6d756e;
+  margin-left: 12rpx;
+}
+
+.hero-sub {
+  font-size: 24rpx;
+  color: #8a9089;
+  margin-top: 2rpx;
+}
+
+.gap {
+  margin-top: 22rpx;
+  padding: 16rpx 20rpx;
+  background: #eef3ef;
+  border-radius: 12rpx;
+  color: #2f6b4f;
+  font-size: 26rpx;
+}
+
+.gap-ok {
+  background: #e7f2ea;
+}
+
+.record-btn {
+  margin: 8rpx 0 24rpx;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f0f2ee;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.row-time {
+  font-size: 28rpx;
+}
+
+.row-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.row-count {
+  font-size: 22rpx;
+  color: #9aa39b;
+  margin-top: 4rpx;
+}
+
+.row-missing {
+  font-size: 26rpx;
+  color: #9aa39b;
+}
+
+.row-empty .row-time {
+  color: #9aa39b;
+}
+
+.tip {
+  margin-top: 14rpx;
+}
+
+.row-weight {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #2f6b4f;
+}
+
+.foot {
+  text-align: center;
+  margin-top: 20rpx;
+  font-size: 22rpx;
+}

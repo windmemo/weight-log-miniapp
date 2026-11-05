@@ -1,0 +1,56 @@
+<view class="page">
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">体重趋势</text>
+    </view>
+    <view class="seg">
+      <view class="seg-item {{range === '7' ? 'active' : ''}}" data-range="7" bindtap="onRange">7 天</view>
+      <view class="seg-item {{range === '30' ? 'active' : ''}}" data-range="30" bindtap="onRange">30 天</view>
+      <view class="seg-item {{range === '90' ? 'active' : ''}}" data-range="90" bindtap="onRange">90 天</view>
+      <view class="seg-item {{range === 'all' ? 'active' : ''}}" data-range="all" bindtap="onRange">全部</view>
+      <view class="seg-item {{range === 'custom' ? 'active' : ''}}" data-range="custom" bindtap="onRange">自定义</view>
+    </view>
+
+    <view wx:if="{{customOpen}}" class="custom">
+      <view class="custom-row">
+        <picker class="custom-picker" mode="date" value="{{customStart}}" end="{{customEnd}}" bindchange="onStartChange">
+          <view class="date-box">{{customStart}}</view>
+        </picker>
+        <text class="custom-sep">至</text>
+        <picker class="custom-picker" mode="date" value="{{customEnd}}" start="{{customStart}}" end="{{todayStr}}" bindchange="onEndChange">
+          <view class="date-box">{{customEnd}}</view>
+        </picker>
+      </view>
+      <button class="btn-ghost apply-btn" bindtap="onApplyCustom">应用日期区间</button>
+      <view class="tip muted">默认最近 30 天；结束日期不能早于开始日期。</view>
+    </view>
+
+    <view wx:if="{{rangeCaption}}" class="chart-caption">{{rangeCaption}}</view>
+
+    <view wx:if="{{hasData}}" class="chart-wrap">
+      <canvas type="2d" id="trendCanvas" class="chart"></canvas>
+    </view>
+    <view wx:else class="empty chart-empty">{{emptyText}}</view>
+
+    <view wx:if="{{hasData}}" class="chart-foot muted">{{summaryText}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">记录明细</text>
+      <text class="muted">长按一条可编辑或删除</text>
+    </view>
+
+    <block wx:if="{{list.length}}">
+      <view class="rec" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindlongpress="onLongPress">
+        <view class="rec-left">
+          <text class="rec-date">{{item.dateText}}</text>
+          <text class="rec-note" wx:if="{{item.note}}">{{item.note}}</text>
+        </view>
+        <text class="rec-weight">{{item.weightText}} {{unitLabel}}</text>
+      </view>
+    </block>
+
+    <view wx:else class="empty">还没有记录。体重看趋势才有意义，先记几天吧。</view>
+  </view>
+</view>

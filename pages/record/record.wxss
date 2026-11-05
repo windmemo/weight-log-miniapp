@@ -1,0 +1,68 @@
+.field-label {
+  font-size: 26rpx;
+  color: #6d756e;
+  margin-bottom: 12rpx;
+}
+
+.weight-input-row {
+  display: flex;
+  align-items: baseline;
+  border-bottom: 2rpx solid #e6e9e4;
+  padding-bottom: 12rpx;
+}
+
+.weight-input {
+  flex: 1;
+  font-size: 80rpx;
+  font-weight: 600;
+  height: 110rpx;
+  line-height: 110rpx;
+}
+
+.weight-unit {
+  font-size: 30rpx;
+  color: #6d756e;
+  margin-left: 12rpx;
+}
+
+.hint {
+  font-size: 22rpx;
+  color: #9aa39b;
+  margin-top: 14rpx;
+}
+
+.row-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #f0f2ee;
+}
+
+picker:last-child .row-line {
+  border-bottom: none;
+}
+
+.row-line-label {
+  font-size: 28rpx;
+}
+
+.row-line-value {
+  font-size: 28rpx;
+  color: #2f6b4f;
+}
+
+.note-input {
+  font-size: 28rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.delete-btn {
+  margin-top: 20rpx;
+}
+
+.tips {
+  text-align: center;
+  margin-top: 20rpx;
+}

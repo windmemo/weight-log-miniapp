@@ -1,0 +1,35 @@
+<view class="page">
+  <view class="card">
+    <view class="field-label">体重（{{unitLabel}}）</view>
+    <view class="weight-input-row">
+      <input class="weight-input" type="digit" value="{{weight}}" placeholder="0.0" bindinput="onWeightInput" focus="{{!isEdit}}" />
+      <text class="weight-unit">{{unitLabel}}</text>
+    </view>
+    <view class="hint">可填 {{rangeText}}，支持 1 位小数</view>
+  </view>
+
+  <view class="card">
+    <picker mode="date" value="{{dateValue}}" end="{{todayStr}}" bindchange="onDateChange">
+      <view class="row-line">
+        <text class="row-line-label">日期</text>
+        <text class="row-line-value">{{dateValue}}</text>
+      </view>
+    </picker>
+    <picker mode="time" value="{{timeValue}}" bindchange="onTimeChange">
+      <view class="row-line">
+        <text class="row-line-label">时间</text>
+        <text class="row-line-value">{{timeValue}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <view class="card">
+    <view class="field-label">备注（可选）</view>
+    <input class="note-input" value="{{note}}" placeholder="比如：晨起、饭后、运动后" maxlength="20" bindinput="onNoteInput" />
+  </view>
+
+  <button class="btn-primary" bindtap="onSave">{{isEdit ? '保存修改' : '保存记录'}}</button>
+  <button wx:if="{{isEdit}}" class="btn-danger delete-btn" bindtap="onDelete">删除这条记录</button>
+
+  <view class="tips muted">同一天记多次都会保留，首页大数字显示当天平均值。</view>
+</view>

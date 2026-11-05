@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="card hero">
+    <view class="hero-label">今天</view>
+    <view class="hero-row">
+      <text class="hero-num">{{todayText}}</text>
+      <text class="hero-unit">{{unitLabel}}</text>
+    </view>
+    <view class="hero-sub" wx:if="{{hasToday}}">今天 {{todayCount}} 次 · 大数字是平均值</view>
+    <view class="hero-sub" wx:else>今天还没记，点下面记一笔</view>
+
+    <view class="gap {{gapReached ? 'gap-ok' : ''}}" bindtap="onGap">{{gapText}}</view>
+  </view>
+
+  <button class="btn-primary record-btn" bindtap="onRecord" style="height: 110rpx; display: block; box-sizing: border-box; left: 0rpx; top: 0rpx; position: relative; width: 522rpx">记一笔</button>
+
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">最近三天</text>
+      <text class="link" bindtap="onTrend">看变化</text>
+    </view>
+
+    <view class="row {{item.hasData ? '' : 'row-empty'}}" wx:for="{{days}}" wx:key="key" data-key="{{item.key}}" bindtap="onDayTap">
+      <view class="row-main">
+        <text class="row-time">{{item.label}}</text>
+      </view>
+      <view class="row-right">
+        <text class="row-weight" wx:if="{{item.hasData}}">{{item.avgText}} {{unitLabel}}</text>
+        <text class="row-missing" wx:else>未记录</text>
+        <text class="row-count" wx:if="{{item.countText}}">{{item.countText}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{!hasAnyRecent}}" class="empty">还没有记录。第一次记录不需要完美，先记下来就好；点上面「记一笔」开始。</view>
+    <view wx:else class="tip muted">点一天可查看或编辑当天记录；没记录的日期点一下就能补记那天。</view>
+  </view>
+
+  <view class="foot muted">数据只存在这台手机，不上传、不联网。</view>
+</view>

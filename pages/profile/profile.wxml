@@ -1,0 +1,116 @@
+<view class="page">
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">显示单位</text>
+      <text class="muted">已存 {{recordCount}} 条</text>
+    </view>
+    <view class="seg">
+      <view class="seg-item {{unit === 'jin' ? 'active' : ''}}" data-unit="jin" bindtap="onUnit">斤（默认）</view>
+      <view class="seg-item {{unit === 'kg' ? 'active' : ''}}" data-unit="kg" bindtap="onUnit">kg</view>
+    </view>
+    <view class="tip muted">切换后全站数字跟着变，已保存的记录不会变。1 kg = 2 斤，内部统一按 kg 存。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">目标体重</text>
+      <text class="muted">{{targetText}}</text>
+    </view>
+    <view class="input-row">
+      <input class="input" type="digit" value="{{targetInput}}" placeholder="比如 120" bindinput="onTargetInput" />
+      <text class="unit-suffix">{{unitLabel}}</text>
+    </view>
+    <button class="btn-primary save-btn" bindtap="onSaveTarget">保存目标</button>
+    <view class="sub-line" wx:if="{{settings.targetWeightKg}}" bindtap="onClearTarget">清除目标</view>
+    <view class="tip muted">首页会显示「距目标还差多少」，趋势图会画一条目标横线。达标后显示「已达成目标」。</view>
+  </view>
+
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">身体信息</text>
+      <text class="muted">用来计算 BMI</text>
+    </view>
+
+    <view class="seg">
+      <view class="seg-item {{gender === 'male' ? 'active' : ''}}" data-gender="male" bindtap="onGender">男</view>
+      <view class="seg-item {{gender === 'female' ? 'active' : ''}}" data-gender="female" bindtap="onGender">女</view>
+    </view>
+
+    <view class="input-row">
+      <input class="input" type="number" value="{{ageInput}}" placeholder="年龄（1–120）" bindinput="onAgeInput" />
+      <text class="unit-suffix">岁</text>
+    </view>
+    <button class="btn-ghost save-btn" bindtap="onSaveAge">保存年龄</button>
+
+    <view class="input-row">
+      <input class="input" type="number" value="{{heightInput}}" placeholder="身高（100–250）" bindinput="onHeightInput" />
+      <text class="unit-suffix">cm</text>
+    </view>
+    <button class="btn-ghost save-btn" bindtap="onSaveHeight">保存身高</button>
+
+    <view class="bmi-box" wx:if="{{bmiText}}">
+      <view class="bmi-row">
+        <text class="bmi-num">{{bmiText}}</text>
+        <text class="bmi-tag">{{bmiClass}}</text>
+      </view>
+      <view class="bmi-line">{{bmiRangeText}}</view>
+      <view class="bmi-line" wx:if="{{bmiDistance}}">{{bmiDistance}}</view>
+      <view class="bmi-line muted">{{bmiLatestText}}</view>
+      <view class="bmi-line muted">男女 BMI 分界值相同，差异主要在体脂分布，不构成个体建议。</view>
+    </view>
+    <view class="tip muted" wx:else>{{bmiTip}}</view>
+
+    <view class="basis-toggle" bindtap="onToggleBasis">{{basisOpen ? '收起计算依据与用法' : '计算依据与用法（点开看）'}}</view>
+    <view class="basis" wx:if="{{basisOpen}}">
+      <view class="basis-p">公式：BMI = 体重(kg) ÷ 身高(m)²。体重取最近一条记录，身高按厘米保存。</view>
+      <view class="basis-p">分类依据：《成人体重判定》WS/T 428—2013（国家卫生健康委员会）。BMI＜18.5 过轻；18.5–23.9 正常；24.0–27.9 超重；≥28.0 肥胖。这些是参考区间，不是诊断。</view>
+      <view class="basis-p">年龄参考区间：18–64 岁 18.5–23.9；65 岁及以上 20.0–26.9（中国疾控中心科普，2025）。80 岁及以上另有 22.0–26.9（WS/T 868—2025）。</view>
+      <view class="basis-p">用法：看长期趋势，不看单日波动。BMI 不区分肌肉和脂肪，也不反映体脂分布，只适合做粗略参考。分类按界面上显示的 1 位小数 BMI 判断，避免四舍五入后数字和分类对不上。</view>
+      <view class="basis-warn">免责声明：仅供自我记录参考，不构成医疗建议或诊断。如有健康疑问，请咨询专业医生。</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="card-head">
+      <text class="card-title">数据备份</text>
+      <text class="muted">{{lastExportText}}</text>
+    </view>
+
+    <button class="btn-primary save-btn" bindtap="onExportJson">导出 JSON（完整备份）</button>
+    <button class="btn-ghost save-btn" bindtap="onExportCsv">导出 CSV（Excel 打开）</button>
+    <button class="btn-ghost save-btn" bindtap="onImport">从聊天导入 JSON 备份</button>
+
+    <view class="tip muted">
+      JSON 含记录和设置（带版本号），换手机可原样恢复；CSV 表头用当前单位，并附另一种单位。
+      手机上导出会弹出「发送给朋友」，发给「文件传输助手」即可保存。
+    </view>
+    <view class="tip muted" wx:if="{{upgradeBackupText}}">{{upgradeBackupText}}</view>
+  </view>
+
+  <view class="card">
+    <view class="card-title">隐私说明</view>
+    <view class="privacy">
+      所有体重数据只存在这台手机的小程序本地存储里，不上传、不联网、没有账号，也没有云端。
+      删除小程序、清理微信缓存或换手机会导致数据丢失，请定期用上面的「导出 JSON」做备份。
+    </view>
+    <button class="btn-danger clear-btn" bindtap="onClearAll">清空所有数据</button>
+  </view>
+
+  <view class="foot muted">体重记录 v1.1.0 · 本地版 · 备份格式 v1</view>
+</view>
+
+<view wx:if="{{dialog.visible}}" class="mask">
+  <view class="dialog">
+    <view class="dialog-title">选择导入方式</view>
+    <view class="dialog-body">
+      <view>文件里有 {{dialog.fileCount}} 条记录，其中 {{dialog.dupCount}} 条与本机重复。</view>
+      <view wx:if="{{dialog.badCount}}">另有 {{dialog.badCount}} 条格式不对，已忽略。</view>
+      <view wx:if="{{dialog.backupOk}}" class="dialog-backup">已自动备份当前数据到：{{dialog.backupName}}</view>
+      <view wx:else class="dialog-backup">自动备份失败（可能存储空间不足），继续导入有丢数据风险。</view>
+    </view>
+
+    <button class="btn-primary dialog-btn" bindtap="onDialogSkip">跳过重复（只新增）</button>
+    <button class="btn-ghost dialog-btn" bindtap="onDialogOverwrite">覆盖本机（用文件替换）</button>
+    <button class="btn-plain dialog-btn" bindtap="onDialogCancel">取消</button>
+  </view>
+</view>
