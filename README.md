@@ -1,5 +1,7 @@
 <h1 align="center">体重记录小刀盾</h1>
 
+<p align="center"><img src="docs/mascot.png" width="160" alt="手持小刀与盾牌、抱着体重秤的小狗吉祥物"></p>
+
 <p align="center">一个只给自己用的体重记录微信小程序：原生写法、纯本地存储、不联网、不依赖云开发。</p>
 
 <p align="center">
@@ -9,7 +11,7 @@
   <img alt="版本 1.1.0" src="https://img.shields.io/badge/Version-1.1.0-C9A227?style=flat-square">
 </p>
 
-> 说明：徽章文字用英文是为了保证在 shields.io 上稳定渲染；仓库为私有仓库，因此不使用依赖 stars / forks 等仓库指标的动态徽章。
+> 说明：徽章文字用英文是为了保证在 shields.io 上稳定渲染；不使用依赖 stars / forks 等仓库指标的动态徽章。
 
 ## 目录
 
@@ -51,22 +53,12 @@
 | 变化 | `pages/trend` | 区间折线图、目标横线、区间汇总、记录列表 |
 | 我的 | `pages/profile` | 单位、目标、身体信息、BMI、导入导出、清空 |
 
-<!--
-截图占位：目前仓库里还没有截图文件，先保留注释，避免首页出现破图。
-上传后删除本段注释，并把下面三行改成实际图片引用（即去掉每行前面的“# ”）。
+| 今天页 | 变化页 | 我的页 |
+| --- | --- | --- |
+| <img src="docs/screenshots/today.png" width="230" alt="今天页"> | <img src="docs/screenshots/trend.png" width="230" alt="变化页"> | <img src="docs/screenshots/profile.png" width="230" alt="我的页"> |
+| 当天平均、最近三天、目标差值 | 区间折线图、目标横线、记录明细 | 单位切换、目标体重、身体信息与 BMI |
 
-# ![今天页](docs/screenshots/today.png)
-# ![变化页](docs/screenshots/trend.png)
-# ![我的页](docs/screenshots/profile.png)
--->
-
-建议文件名：
-
-- `docs/screenshots/today.png`（今天页）
-- `docs/screenshots/trend.png`（变化页）
-- `docs/screenshots/profile.png`（我的页）
-
-上传后把上面对应行改成 `![今天页](docs/screenshots/today.png)` 这样的写法即可。
+截图取自 2026-11 的真机界面。`记一笔` 页暂未截图，后续可按同样方式补 `docs/screenshots/record.png`。
 
 ## 🧮 BMI 说明
 
@@ -217,6 +209,10 @@
 ├── project.config.json    # 开发者工具项目配置
 ├── sitemap.json
 ├── README.md
+├── LICENSE                # MIT
+├── docs/
+│   ├── mascot.png         # 吉祥物图（README 顶部）
+│   └── screenshots/       # 界面截图：today.png / trend.png / profile.png
 ├── pages/
 │   ├── today/             # 今天：当天平均、最近 3 天、目标差值
 │   ├── record/            # 记一笔 / 编辑记录
@@ -233,7 +229,7 @@
 └── 体重小程序-初版功能框架.md
 ```
 
-截图上传后会多出一个 `docs/screenshots/` 目录。
+`docs/` 存放 README 用的吉祥物与界面截图，不影响小程序运行（不参与打包体积的页面逻辑）。
 
 ## 📝 更新记录
 
