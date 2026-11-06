@@ -18,3 +18,9 @@ _*.py
 *.tmp
 Thumbs.db
 .DS_Store
+
+# 导出的个人数据文件，绝不提交
+自动备份-*.json
+升级前备份-*.json
+体重备份-*.json
+体重记录-*.csv

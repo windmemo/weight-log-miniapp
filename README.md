@@ -248,4 +248,8 @@
 
 ## 📄 License
 
-暂未确定，待作者确认后补充（例如 MIT）。在补充许可证之前，请勿直接商用或再分发。
+本项目采用 [MIT License](LICENSE)。
+
+你可以自由使用、修改、分发本项目（包括商用），但需保留版权声明与许可声明。完整条款见仓库根目录的 [LICENSE](LICENSE)。
+
+Copyright (c) 2026 windmemo
