@@ -8,6 +8,8 @@ Page({
     unit: 'jin',
     unitLabel: '斤',
     rangeText: '',
+    decimalPlaces: 1,
+    weightPlaceholder: '0.0',
     weight: '',
     note: '',
     dateValue: '',
@@ -55,6 +57,8 @@ Page({
       unit: unit,
       unitLabel: unitUtil.unitLabel(unit),
       rangeText: unitUtil.rangeText(unit),
+      decimalPlaces: unitUtil.decimals(unit),
+      weightPlaceholder: unit === 'kg' ? '0.00' : '0.0',
       weight: weight,
       note: note,
       dateValue: dateUtil.formatDate(ts),
@@ -88,8 +92,10 @@ Page({
       wx.showToast({ title: '请先输入体重', icon: 'none' })
       return
     }
-    if (!/^\d{1,3}(\.\d)?$/.test(raw)) {
-      wx.showToast({ title: '请输入数字，最多 1 位小数', icon: 'none' })
+    const places = unitUtil.decimals(unit)
+    const weightRe = new RegExp('^\\d{1,3}(\\.\\d{1,' + places + '})?$')
+    if (!weightRe.test(raw)) {
+      wx.showToast({ title: '请输入数字，最多 ' + places + ' 位小数', icon: 'none' })
       return
     }
 

@@ -11,6 +11,7 @@ Page({
     unit: 'jin',
     unitLabel: '斤',
     targetInput: '',
+    targetPlaceholder: '比如 120.0',
     targetText: '未设置目标',
     heightInput: '',
     ageInput: '',
@@ -95,6 +96,7 @@ Page({
       gender: s.gender || '',
       ageInput: s.age ? String(s.age) : '',
       targetInput: s.targetWeightKg ? unitUtil.displayText(s.targetWeightKg, unit) : '',
+      targetPlaceholder: unit === 'kg' ? '比如 60.00' : '比如 120.0',
       targetText: s.targetWeightKg ? '当前目标 ' + unitUtil.displayText(s.targetWeightKg, unit) + ' ' + unitText : '尚未设置目标',
       heightInput: s.heightCm ? String(s.heightCm) : '',
       bmiText: bmiText,
@@ -132,8 +134,10 @@ Page({
       wx.showToast({ title: '请先输入目标体重', icon: 'none' })
       return
     }
-    if (!/^\d{1,3}(\.\d)?$/.test(raw)) {
-      wx.showToast({ title: '请输入数字，最多 1 位小数', icon: 'none' })
+    const places = unitUtil.decimals(unit)
+    const targetRe = new RegExp('^\\d{1,3}(\\.\\d{1,' + places + '})?$')
+    if (!targetRe.test(raw)) {
+      wx.showToast({ title: '请输入数字，最多 ' + places + ' 位小数', icon: 'none' })
       return
     }
 

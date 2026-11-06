@@ -6,14 +6,20 @@ function unitLabel(unit) {
   return unit === 'kg' ? 'kg' : '斤'
 }
 
+// 显示精度按单位区分：kg 保留 2 位小数，斤保留 1 位小数
+function decimals(unit) {
+  return unit === 'kg' ? 2 : 1
+}
+
 function toDisplay(kg, unit) {
+  const f = Math.pow(10, decimals(unit))
   const v = unit === 'kg' ? kg : kg / KG_PER_JIN
-  return Math.round(v * 10) / 10
+  return Math.round(v * f) / f
 }
 
 function displayText(kg, unit) {
   if (typeof kg !== 'number' || !isFinite(kg)) return '--'
-  return toDisplay(kg, unit).toFixed(1)
+  return toDisplay(kg, unit).toFixed(decimals(unit))
 }
 
 function fromDisplay(value, unit) {
@@ -36,6 +42,7 @@ module.exports = {
   MAX_KG,
   KG_PER_JIN,
   unitLabel,
+  decimals,
   toDisplay,
   displayText,
   fromDisplay,

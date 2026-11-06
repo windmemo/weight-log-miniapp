@@ -194,6 +194,7 @@ Page({
       const plotH = H - padT - padB
 
       const unit = settings.unit
+      const places = unitUtil.decimals(unit)
       const values = points.map(function (p) {
         return unitUtil.toDisplay(p.avgKg, unit)
       })
@@ -240,7 +241,7 @@ Page({
         ctx.moveTo(padL, y)
         ctx.lineTo(padL + plotW, y)
         ctx.stroke()
-        ctx.fillText(v.toFixed(1), 2, y)
+        ctx.fillText(v.toFixed(places), 2, y)
       }
 
       // 目标水平虚线
@@ -259,7 +260,7 @@ Page({
         ctx.fillStyle = '#b58d12'
         ctx.font = '10px sans-serif'
         ctx.textAlign = 'right'
-        ctx.fillText('目标 ' + targetVal.toFixed(1), padL + plotW, ty - 8)
+        ctx.fillText('目标 ' + targetVal.toFixed(places), padL + plotW, ty - 8)
       }
 
       // 折线

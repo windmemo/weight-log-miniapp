@@ -17,7 +17,7 @@
       <text class="muted">{{targetText}}</text>
     </view>
     <view class="input-row">
-      <input class="input" type="digit" value="{{targetInput}}" placeholder="比如 120" bindinput="onTargetInput" />
+      <input class="input" type="digit" value="{{targetInput}}" placeholder="{{targetPlaceholder}}" bindinput="onTargetInput" />
       <text class="unit-suffix">{{unitLabel}}</text>
     </view>
     <button class="btn-primary save-btn" bindtap="onSaveTarget">保存目标</button>
