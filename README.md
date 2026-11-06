@@ -1,6 +1,6 @@
 <h1 align="center">体重记录小刀盾</h1>
 
-<p align="center"><img src="docs/mascot.png" width="160" alt="手持小刀与盾牌、抱着体重秤的小狗吉祥物"></p>
+<p align="center"><img src="docs/mascot.png" width="240" alt="手持小刀与盾牌、抱着体重秤的小狗吉祥物"></p>
 
 <p align="center">一个只给自己用的体重记录微信小程序：原生写法、纯本地存储、不联网、不依赖云开发。</p>
 
@@ -11,22 +11,27 @@
   <img alt="版本 1.1.0" src="https://img.shields.io/badge/Version-1.1.0-C9A227?style=flat-square">
 </p>
 
-> 说明：徽章文字用英文是为了保证在 shields.io 上稳定渲染；不使用依赖 stars / forks 等仓库指标的动态徽章。
-
 ## 目录
 
+- [📱 界面一览](#-界面一览)
 - [🚀 功能一览](#-功能一览)
-- [📱 页面与截图](#-页面与截图)
 - [🧮 BMI 说明](#-bmi-说明)
 - [💾 数据与备份](#-数据与备份)
 - [🔒 隐私说明](#-隐私说明)
 - [🛠 快速开始](#-快速开始)
 - [❓ 常见问题](#-常见问题)
-- [🖼 如何给 README 加图](#-如何给-readme-加图)
 - [🗂 目录结构](#-目录结构)
 - [📝 更新记录](#-更新记录)
 - [⚠️ 免责声明](#-免责声明)
 - [📄 License](#-license)
+
+## 📱 界面一览
+
+<p align="center"><img src="docs/screenshots/ui.png" width="820" alt="今天、变化、我的三页界面"></p>
+
+从左到右分别是「今天」「变化」「我的」：今天页一眼看到当天平均值和「记一笔」主按钮，下面是最近三天；变化页可切 7 / 30 / 90 天、全部或自定义区间，目标体重是一条横线；我的页集中了单位切换、目标体重、BMI 身体信息与导入导出。
+
+<sub>记一笔页暂无截图。</sub>
 
 ## 🚀 功能一览
 
@@ -43,22 +48,6 @@
 - **无依赖**：没有 npm 包、没有 CDN、没有 ECharts，图表用 canvas 2d 手绘，复制目录即可运行。
 
 > 所有数据都留在本机，没有账号体系，也没有任何网络请求。
-
-## 📱 页面与截图
-
-| 页面 | 路径 | 主要内容 |
-| --- | --- | --- |
-| 今天 | `pages/today` | 当天平均、最近 3 天列表、目标差值 |
-| 记一笔 | `pages/record` | 新增 / 编辑 / 删除单条记录 |
-| 变化 | `pages/trend` | 区间折线图、目标横线、区间汇总、记录列表 |
-| 我的 | `pages/profile` | 单位、目标、身体信息、BMI、导入导出、清空 |
-
-| 今天页 | 变化页 | 我的页 |
-| --- | --- | --- |
-| <img src="docs/screenshots/today.png" width="230" alt="今天页"> | <img src="docs/screenshots/trend.png" width="230" alt="变化页"> | <img src="docs/screenshots/profile.png" width="230" alt="我的页"> |
-| 当天平均、最近三天、目标差值 | 区间折线图、目标横线、记录明细 | 单位切换、目标体重、身体信息与 BMI |
-
-截图取自 2026-11 的真机界面。`记一笔` 页暂未截图，后续可按同样方式补 `docs/screenshots/record.png`。
 
 ## 🧮 BMI 说明
 
@@ -175,30 +164,6 @@
 导入用的是 `wx.chooseMessageFile`（从聊天选文件），只在手机微信里可用，请用真机预览后再试。
 </details>
 
-## 🖼 如何给 README 加图
-
-**方式一：GitHub 网页上传（不用装软件）**
-
-1. 打开仓库页面，点 `Add file` → `Upload files`。
-2. 把截图拖进去；如果直接拖到根目录，文件名处手动改成 `docs/screenshots/today.png`，GitHub 会自动建好目录。
-3. 填一句提交信息，点 `Commit changes`。
-
-**方式二：GitHub Desktop**
-
-1. 在本地项目里新建 `docs/screenshots/` 文件夹，放入截图（建议命名 `today.png`、`trend.png`、`profile.png`）。
-2. 打开 GitHub Desktop，左侧会列出新增文件，填写提交信息后点 `Commit to main`。
-3. 点 `Push origin` 推送到 GitHub。
-
-**相对路径写法**
-
-```markdown
-![今天页](docs/screenshots/today.png)
-```
-
-- 路径区分大小写，文件名要和实际文件一致。
-- 不要写本机绝对路径（如 `D:\...`），否则别人打开会破图。
-- 图片和 README 都在仓库里时，用相对路径最稳。
-
 ## 🗂 目录结构
 
 ```text
@@ -212,7 +177,7 @@
 ├── LICENSE                # MIT
 ├── docs/
 │   ├── mascot.png         # 吉祥物图（README 顶部）
-│   └── screenshots/       # 界面截图：today.png / trend.png / profile.png
+│   └── screenshots/       # 界面截图：ui.png（今天 / 变化 / 我的 三页拼图）
 ├── pages/
 │   ├── today/             # 今天：当天平均、最近 3 天、目标差值
 │   ├── record/            # 记一笔 / 编辑记录
@@ -229,7 +194,7 @@
 └── 体重小程序-初版功能框架.md
 ```
 
-`docs/` 存放 README 用的吉祥物与界面截图，不影响小程序运行（不参与打包体积的页面逻辑）。
+`docs/` 仅存放 README 配图。
 
 ## 📝 更新记录
 
